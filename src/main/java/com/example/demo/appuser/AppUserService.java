@@ -65,12 +65,10 @@ public class AppUserService implements UserDetailsService {
         AppUser userExist = appUserRepository.findByEmail(email).get();
         HashMap<String, Object> object = new HashMap<>();
         HashMap<String, Object> data = new HashMap<>();
-        object.put("success",true);
 
-        object.put("status",200);
         if(userExist!=null){
             String encodePassword = bCryptPasswordEncoder.encode(password);
-            if(encodePassword==userExist.getPassword()){
+            if(bCryptPasswordEncoder.matches(password,userExist.getPassword())){
                 String token = UUID.randomUUID().toString();
                 ConfirmationToken confirmationToken = new ConfirmationToken(
                         token,
@@ -87,11 +85,15 @@ public class AppUserService implements UserDetailsService {
                 return new ResponseEntity<>(object, HttpStatus.OK);
             }else{
                 data.put("user",null);
+                object.put("message",false);
+                object.put("status",200);
                 object.put("data",null);
                 return new ResponseEntity<>(object, HttpStatus.OK);
             }
         }else{
             data.put("user",null);
+            object.put("message",false);
+            object.put("status",200);
             object.put("data",null);
             return new ResponseEntity<>(object, HttpStatus.OK);
         }
