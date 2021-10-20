@@ -31,6 +31,11 @@ public class AdController {
         return adService.getAdById(id);
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Map<String, Object>> getAdByUserId (@PathVariable(value = "id") Long id){
+        return adService.getAdByUserId(id);
+    }
+
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAds (){
         return adService.getAds();

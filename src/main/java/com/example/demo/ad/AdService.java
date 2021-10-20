@@ -56,6 +56,19 @@ public class AdService {
         return new ResponseEntity<>(object, HttpStatus.OK);
     }
 
+    public ResponseEntity<Map<String,Object>> getAdByUserId(Long id){
+        HashMap<String, Object> object = new HashMap<>();
+        HashMap<String, Object> data = new HashMap<>();
+        List ads = adRepository.getAdByUserId(id.toString());
+        System.out.println("data ads");
+        System.out.println(ads);
+        object.put("data",ads);
+        object.put("success",true);
+        object.put("message","success");
+        object.put("status",200);
+        return new ResponseEntity<>(object, HttpStatus.OK);
+    }
+
     public ResponseEntity<Map<String ,Object>> getAds(){
         HashMap<String, Object> object = new HashMap<>();
         object.put("data",adRepository.findAll());
