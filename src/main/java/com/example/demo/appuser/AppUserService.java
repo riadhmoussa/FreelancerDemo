@@ -53,7 +53,7 @@ public class AppUserService implements UserDetailsService {
         HashMap<String, Object> object = new HashMap<>();
         HashMap<String, Object> data = new HashMap<>();
         data.put("user",appUser);
-        object.put("data",data);
+        object.put("data",appUser);
         object.put("success",true);
         object.put("message","success");
         object.put("status",200);
@@ -62,7 +62,16 @@ public class AppUserService implements UserDetailsService {
     }
 
     public ResponseEntity<Map<String, Object>> SignIn(String email,String password){
-        AppUser userExist = appUserRepository.findByEmail(email).get();
+        System.out.println("ResponseEntity");
+        System.out.println(email);
+        System.out.println(password);
+        AppUser userExist = null;
+        try {
+            userExist  = appUserRepository.findByEmail(email).get();
+
+        }catch (Exception ex){
+             userExist = null;
+        }
         HashMap<String, Object> object = new HashMap<>();
         HashMap<String, Object> data = new HashMap<>();
 

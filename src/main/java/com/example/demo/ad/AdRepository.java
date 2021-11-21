@@ -15,7 +15,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface AdRepository extends JpaRepository<Ad,Long>, JpaSpecificationExecutor {
 
-    @Query(value="select * from Ad ad where ad.ad_fid =:userId", nativeQuery=true)
+    @Query(value="select * from Ad ad where ad.id_fid =:userId", nativeQuery=true)
     List<Ad[]> getAdByUserId(@Param("userId") String userId);
 
 }

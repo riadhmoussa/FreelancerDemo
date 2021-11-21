@@ -62,6 +62,7 @@ public class AdService {
         List ads = adRepository.getAdByUserId(id.toString());
         System.out.println("data ads");
         System.out.println(ads);
+        System.out.println(id);
         object.put("data",ads);
         object.put("success",true);
         object.put("message","success");

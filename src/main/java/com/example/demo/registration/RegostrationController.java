@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +15,7 @@ import java.util.Map;
 public class RegostrationController {
 
     private RegistrationService registrationService;
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
     public ResponseEntity<Map<String, Object>> register (@RequestBody RegistrationRequest request)  {
         return registrationService.register(request);

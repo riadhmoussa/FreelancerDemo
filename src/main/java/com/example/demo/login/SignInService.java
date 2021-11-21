@@ -18,6 +18,9 @@ public class SignInService {
     private final AppUserService appUserService;
 
     public ResponseEntity<Map<String, Object>> signin(SignInRequest request) {
+        System.out.println(request);
         return appUserService.SignIn(request.getEmail(),request.getPassword());
     }
+
+
 }
